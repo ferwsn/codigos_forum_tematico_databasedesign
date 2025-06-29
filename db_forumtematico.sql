@@ -26,7 +26,7 @@
 	);
 	GO
 	CREATE TABLE status_projeto (
-		id_sp INT,
+		id_sp INT PRIMARY KEY IDENTITY(1,1),
 		nome_status VARCHAR(50)
 	);
 	GO
@@ -72,4 +72,28 @@
 		titulo VARCHAR(50),
 		setor VARCHAR(50)
 	);
+	GO
+	ALTER TABLE email_cliente
+	ADD CONSTRAINT fk_id_cliente_emailcliente FOREIGN KEY (id_cliente) REFERENCES cliente(id_cliente);
+	GO
+	ALTER TABLE telefone_cliente
+	ADD CONSTRAINT fk_id_cliente_telefonecliente FOREIGN KEY (id_cliente) REFERENCES cliente(id_cliente);
+	GO
+	ALTER TABLE projeto
+	ADD CONSTRAINT fk_id_cliente_projeto FOREIGN KEY (id_cliente) REFERENCES cliente(id_cliente);
+	GO
+	ALTER TABLE projeto
+	ADD CONSTRAINT fk_id_equipe_desenvolvimento_equipes FOREIGN KEY (id_equipe_desenvolvimento) REFERENCES equipe(id_equipe);
+	GO
+	ALTER TABLE projeto
+	ADD CONSTRAINT fk_id_equipe_montagem_equipes FOREIGN KEY (id_equipe_montagem) REFERENCES equipe(id_equipe);
+	GO
+	ALTER TABLE funcionario
+	ADD CONSTRAINT fk__id_equipe_funcionario FOREIGN KEY (id_equipe) REFERENCES equipe(id_equipe);
+	GO
+	ALTER TABLE email_funcionario
+	ADD CONSTRAINT fk_id_funcionario_funcionario_email_funcionario FOREIGN KEY (id_funcionario) REFERENCES funcionario(id_funcionario);
+	GO
+	ALTER TABLE telefone_funcionario
+	ADD CONSTRAINT fk_id_funcionario_funcionario_telefone_funcionario FOREIGN KEY (id_funcionario) REFERENCES funcionario(id_funcionario);
 	GO
